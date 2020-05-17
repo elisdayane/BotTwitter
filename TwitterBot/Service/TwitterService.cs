@@ -9,7 +9,7 @@ using TwitterBot.Model;
 
 namespace TwitterBot.Service
 {
-    public class TwitterService
+    public class TwitterService : ITwitterService
     {
 
         private Context _context;

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using TwitterBot.Model;
+using TwitterBot.Service;
 
 namespace TwitterBot
 {
@@ -33,8 +34,9 @@ namespace TwitterBot
             services.AddControllers();
             services.AddDbContext<Context>();
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<ITwitterService, TwitterService>();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
 
             // config versionamento
             services.AddApiVersioning(p =>
