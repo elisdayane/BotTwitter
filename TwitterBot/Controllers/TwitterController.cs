@@ -18,27 +18,29 @@ namespace TwitterBot.Controllers
     public class TwitterController : ControllerBase
     {
 
-        private ITwitterService service;
+        private ITwitterService _service;
         private IMapper mapper;
 
         public TwitterController(ITwitterService service, IMapper mapper)
         {
-            this.service = service;
+            this._service = service;
             this.mapper = mapper;
         }
 
 
 
-        [HttpPost("tag")]
+        [HttpPost("search")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<TagDTO> Post(TagDTO value)
+        public ActionResult search(string Tag)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            //teste request
-            
-            return Ok(value);
+
+            var lista = _service.SearchTag(Tag);
+
+            //teste
+            return Ok(Tag);
         }
 
 
