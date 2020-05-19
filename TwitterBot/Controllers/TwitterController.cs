@@ -1,10 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TwitterBot.DTO;
 using TwitterBot.Service;
 
@@ -12,8 +7,7 @@ namespace TwitterBot.Controllers
 {
     [Produces("application/json")]
     [ApiController]
-    //[ApiVersion("1.0")]
-    //[Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/[controller]")]
 
     public class TwitterController : ControllerBase
     {
@@ -28,18 +22,11 @@ namespace TwitterBot.Controllers
         }
 
 
-
-        [HttpPost("search")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult search(string Tag)
+        [HttpGet]
+        public ActionResult<RespostaDTO> search(string Tag)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
+           
             var lista = _service.SearchTag(Tag);
-
-            //teste
             return Ok(Tag);
         }
 

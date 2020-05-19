@@ -2,18 +2,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using TwitterBot.Model;
 using TwitterBot.Service;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace TwitterBot
 {
@@ -34,7 +28,16 @@ namespace TwitterBot
             services.AddDbContext<Context>();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ITwitterService, TwitterService>();
-           
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "API para bot Twitter",
+                    Description = "API captura dados twitter"
+                });
+            });
+
 
         }
 
@@ -46,7 +49,11 @@ namespace TwitterBot
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
 
+            app.UseSwaggerUI(opt => opt.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
+
+ 
         }
     }
 }

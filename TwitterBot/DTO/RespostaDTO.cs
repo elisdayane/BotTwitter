@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TwitterBot.DTO
 {
-    public class RepostaDTO
+    public class RespostaDTO
     {
         public int Id { get; set; }
         public string Tag { get; set; }
