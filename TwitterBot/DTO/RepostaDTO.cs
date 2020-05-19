@@ -12,7 +12,7 @@ namespace TwitterBot.DTO
         public string NomeUsuario { get; set; }
         public int IdUsuario { get; set; }
         public string Texto { get; set; }
-        public long NumeroSefuidores { get; set; }
+        public long NumeroSeguidores { get; set; }
         public DateTime DataPostagem { get; set; }
 
     }

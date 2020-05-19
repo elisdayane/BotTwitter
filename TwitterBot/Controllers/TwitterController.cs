@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace TwitterBot.Controllers
 {
     [Produces("application/json")]
     [ApiController]
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    //[ApiVersion("1.0")]
+    //[Route("api/v{version:apiVersion}/[controller]")]
 
     public class TwitterController : ControllerBase
     {
@@ -27,14 +28,17 @@ namespace TwitterBot.Controllers
         }
 
 
-        [HttpPost]
+
+        [HttpPost("tag")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<TagDTO> Post(TagDTO value)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+            //teste request
             
-            
-            return Ok();
+            return Ok(value);
         }
 
 
