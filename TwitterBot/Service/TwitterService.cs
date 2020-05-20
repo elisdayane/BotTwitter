@@ -32,7 +32,7 @@ namespace TwitterBot.Service
 
             var tweets = Search.SearchTweets(searchParameter);
 
-            return null;
+            return null; //teste
 
         }
 

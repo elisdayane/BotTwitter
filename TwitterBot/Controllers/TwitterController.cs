@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TwitterBot.DTO;
 using TwitterBot.Service;
-using System.Net.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace TwitterBot.Controllers
 {
@@ -25,10 +25,12 @@ namespace TwitterBot.Controllers
 
         //[HttpPost]
         [HttpPost("search")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<RespostaDTO> search()
         {
            
-            //var lista = _service.SearchTag(Tag);
+            //var teste = _service.SearchTag(Tag);
             return Ok();
         }
 
